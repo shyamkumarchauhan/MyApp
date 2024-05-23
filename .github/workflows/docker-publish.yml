@@ -24,15 +24,15 @@ jobs:
 
       - name: Build and push Go app
         run: |
-          docker build -t myusername/go-app:latest ./go
-          docker push myusername/go-app:latest
+          docker build -t shyamthedevopsguy/go-app:latest ./go
+          docker push shyamthedevopsguy/go-app:latest
 
       - name: Build and push Next.js app
         run: |
-          docker build -t myusername/nextjs-app:latest ./nextjs
-          docker push myusername/nextjs-app:latest
+          docker build -t shyamthedevopsguy/nextjs-app:latest ./nextjs
+          docker push shyamthedevopsguy/nextjs-app:latest
 
       - name: Build and push WordPress site
         run: |
-          docker build -t myusername/wordpress:latest ./wordpress
-          docker push myusername/wordpress:latest
+          docker build -t shyamthedevopsguy/wordpress:latest ./wordpress
+          docker push shyamthedevopsguy/wordpress:latest

@@ -42,10 +42,10 @@ jobs:
         working-directory: ./wordpress
 
       - name: Build Docker image
-        run: docker build -t myusername/wordpress:latest ./wordpress
+        run: docker build -t shyamthedevopsguy/wordpress:latest ./wordpress
 
       - name: Push Docker image
-        run: docker push myusername/wordpress:latest
+        run: docker push shyamthedevopsguy/wordpress:latest
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}

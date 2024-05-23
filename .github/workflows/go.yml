@@ -44,10 +44,10 @@ jobs:
         working-directory: ./go
 
       - name: Build Docker image
-        run: docker build -t myusername/go-app:latest ./go
+        run: docker build -t shyamthedevopsguy/go-app:latest ./go
 
       - name: Push Docker image
-        run: docker push myusername/go-app:latest
+        run: docker push shyamthedevopsguy/go-app:latest
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}

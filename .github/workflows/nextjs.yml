@@ -40,10 +40,10 @@ jobs:
         working-directory: ./nextjs
 
       - name: Build Docker image
-        run: docker build -t myusername/nextjs-app:latest ./nextjs
+        run: docker build -t shyamthedevopsguy/nextjs-app:latest ./nextjs
 
       - name: Push Docker image
-        run: docker push myusername/nextjs-app:latest
+        run: docker push shyamthedevopsguy/nextjs-app:latest
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
