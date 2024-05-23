@@ -1,0 +1,61 @@
+version: '3.3'
+
+services:
+  go-app:
+    build:
+      context: ./go
+      dockerfile: Dockerfile
+    container_name: go-app
+    ports:
+      - "8080:8080"
+    networks:
+      - mynetwork
+
+  nextjs-app:
+    build:
+      context: ./nextjs
+      dockerfile: Dockerfile
+    container_name: nextjs-app
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+
+  wordpress:
+    build:
+      context: ./wordpress
+      dockerfile: Dockerfile
+    container_name: wordpress
+    ports:
+      - "8000:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: exampleuser
+      WORDPRESS_DB_PASSWORD: examplepass
+      WORDPRESS_DB_NAME: exampledb
+    volumes:
+      - ./wordpress/wp-content:/var/www/html/wp-content
+    networks:
+      - mynetwork
+
+  db:
+    image: mysql:5.7
+    container_name: wordpress-db
+    restart: always
+    environment:
+      MYSQL_DATABASE: exampledb
+      MYSQL_USER: exampleuser
+      MYSQL_PASSWORD: examplepass
+      MYSQL_ROOT_PASSWORD: somerootpassword
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  db_data:
+
