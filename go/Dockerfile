@@ -4,8 +4,7 @@ FROM golang:1.17 as builder
 WORKDIR /app
 
 # Fetch dependencies.
-COPY go.mod .
-COPY go.sum .
+COPY go.* .
 
 RUN go mod tidy
 RUN go build -o app
