@@ -15,4 +15,3 @@ WORKDIR /app
 COPY --from=builder /app/app /app/app
 
 CMD ["/app/app"]
-
