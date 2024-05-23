@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: nextjs-app
-          image: myusername/nextjs-app:latest
+          image: shyamthedevopsguy/nextjs-app:latest
           ports:
             - containerPort: 3000
 ---

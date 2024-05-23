@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: wordpress-app
-          image: myusername/wordpress-app:latest
+          image: shyamthedevopsguy/wordpress-app:latest
           ports:
             - containerPort: 8000
 ---
