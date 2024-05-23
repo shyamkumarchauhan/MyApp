@@ -5,7 +5,7 @@ WORKDIR /app
 
 
 # Fetch dependencies.
-COPY go.* .
+COPY src/main.go .
 RUN go mod init example.com/m/v2
 RUN go mod tidy
 RUN go build -o app
