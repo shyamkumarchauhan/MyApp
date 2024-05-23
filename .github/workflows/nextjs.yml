@@ -1,4 +1,4 @@
-name: Next.js CI
+name: Next.js CI/CD
 
 on:
   push:
@@ -39,3 +39,24 @@ jobs:
         run: npm test
         working-directory: ./nextjs
 
+      - name: Build Docker image
+        run: docker build -t myusername/nextjs-app:latest ./nextjs
+
+      - name: Push Docker image
+        run: docker push myusername/nextjs-app:latest
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: 'latest'
+
+       ...
+      - name: Deploy to Staging
+        if: success()
+        run: |
+          kubectl apply -f k8s/staging/nextjs-app.yaml
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA_STAGING }}

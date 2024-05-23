@@ -1,4 +1,4 @@
-name: Go CI
+name: Go CI/CD
 
 on:
   push:
@@ -42,4 +42,26 @@ jobs:
       - name: Run tests
         run: go test ./...
         working-directory: ./go
+
+      - name: Build Docker image
+        run: docker build -t myusername/go-app:latest ./go
+
+      - name: Push Docker image
+        run: docker push myusername/go-app:latest
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: 'latest'
+
+       ...
+      - name: Deploy to Staging
+        if: success()
+        run: |
+          kubectl apply -f k8s/staging/go-app.yaml
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA_STAGING }}
 

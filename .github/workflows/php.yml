@@ -1,4 +1,4 @@
-name: PHP CI
+name: WordPress CI/CD
 
 on:
   push:
@@ -40,4 +40,26 @@ jobs:
       - name: Run PHP tests
         run: vendor/bin/phpunit
         working-directory: ./wordpress
+
+      - name: Build Docker image
+        run: docker build -t myusername/wordpress:latest ./wordpress
+
+      - name: Push Docker image
+        run: docker push myusername/wordpress:latest
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Set up kubectl
+        uses: azure/setup-kubectl@v1
+        with:
+          version: 'latest'
+
+       ...
+      - name: Deploy to Staging
+        if: success()
+        run: |
+          kubectl apply -f k8s/staging/wordpress.yaml
+        env:
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA_STAGING }}
 
