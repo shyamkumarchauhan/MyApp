@@ -3,7 +3,9 @@ FROM golang:1.17 as builder
 
 WORKDIR /app
 
-COPY . .
+# Fetch dependencies.
+COPY go.mod .
+COPY go.sum .
 
 RUN go mod tidy
 RUN go build -o app
