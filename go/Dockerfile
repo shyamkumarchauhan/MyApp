@@ -4,7 +4,8 @@ FROM golang:1.17 as builder
 WORKDIR /app
 
 
-RUN go mod download
+RUN go mod init —
+
 # Fetch dependencies.
 COPY go.* .
 
