@@ -1,31 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: go-app
+  name: nextjs-app
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: go-app
+      app: nextjs-app
   template:
     metadata:
       labels:
-        app: go-app
+        app: nextjs-app
     spec:
       containers:
-        - name: go-app
-          image: myusername/go-app:latest
+        - name: nextjs-app
+          image: myusername/nextjs-app:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: go-app
+  name: nextjs-app
 spec:
   selector:
-    app: go-app
+    app: nextjs-app
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080
+      targetPort: 3000

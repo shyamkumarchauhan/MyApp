@@ -1,6 +1,6 @@
 # Project Name
 
-Description of your project.
+MyApp project.
 
 ## Table of Contents
 
@@ -52,9 +52,9 @@ Push your Docker images to a container registry accessible from your Kubernetes 
 
 Add the necessary secrets to your GitHub repository for accessing your Docker registry and Kubernetes cluster. These secrets include:
 
-DOCKER_USERNAME: Your Docker registry username.
-DOCKER_PASSWORD: Your Docker registry password.
-KUBE_CONFIG_DATA_STAGING: Base64 encoded kubeconfig file content for accessing your Kubernetes Staging cluster. 
+- DOCKER_USERNAME: Your Docker registry username.
+- DOCKER_PASSWORD: Your Docker registry password.
+- KUBE_CONFIG_DATA_STAGING: Base64 encoded kubeconfig file content for accessing your Kubernetes Staging cluster. 
 
 ### 5. Set Up CI/CD Pipelines
 
