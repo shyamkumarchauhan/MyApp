@@ -3,6 +3,8 @@ FROM golang:1.17 as builder
 
 WORKDIR /app
 
+
+RUN go mod download
 # Fetch dependencies.
 COPY go.* .
 
