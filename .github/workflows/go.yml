@@ -27,6 +27,14 @@ jobs:
         run: go mod tidy
         working-directory: ./go
 
+      - name: Install golangci-lint
+        run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+        working-directory: ./go
+
+      - name: Run golangci-lint
+        run: golangci-lint run ./...
+        working-directory: ./go
+
       - name: Build
         run: go build ./...
         working-directory: ./go
